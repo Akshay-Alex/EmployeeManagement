@@ -7,7 +7,7 @@
 <div class="row p-3">
     <div class="col-sm-12">
         <h1>Please enter Employee details</h1>
-        <form novalidate="novalidate" action="/Employee/AddEmployee" method="post" class="needs-validation">
+        <form novalidate="novalidate" action="/Employee/AddEmployee" method="post" class="needs-validation" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-sm-6">Name :
                     <input type="text" class="form-control" name="EmployeeName" required="required" pattern="^[a-zA-Z ]*$" />
@@ -41,6 +41,11 @@
                     </div>
                     </div>
                 </div>
+                
+                @{Html.RenderPartial("UploadImageView");
+                }
+
+
                     <button type="submit" class="btn btn-primary">Add Employee</button>
         </form>
     </div>

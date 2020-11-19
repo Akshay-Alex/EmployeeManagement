@@ -16,10 +16,10 @@ namespace EmployeeManagement.Repositories
     }
     public class LeaveRepository : ILeaveRepository
     {
-        empDbcontext db;
+        EmpDbcontext db;
         public LeaveRepository()
         {
-            db = new empDbcontext();
+            db = new EmpDbcontext();
         }
         public void RequestLeave(Leave l)
         {

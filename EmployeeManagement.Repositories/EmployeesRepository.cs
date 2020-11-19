@@ -17,10 +17,10 @@ namespace EmployeeManagement.Repositories
     }
     public class EmployeesRepository : IEmployeesRepository
     {
-        empDbcontext db;
+        EmpDbcontext db;
         public EmployeesRepository()
         {
-            db = new empDbcontext();
+            db = new EmpDbcontext();
         }
         public void InsertEmployee(Employee e)
         {

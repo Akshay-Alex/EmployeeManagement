@@ -10,7 +10,7 @@ namespace EmployeeManagement.ViewModels
 {
     public class EditEmployeeViewModel
     {
-        public int empid { get; set; }
+        public int Empid { get; set; }
         [Required]
         [RegularExpression(@"^[a-zA-Z]*$")]
         public string EmployeeName { get; set; }

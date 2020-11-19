@@ -26,6 +26,33 @@ namespace EmployeeManagement.Controllers
         [HttpPost]
         public ActionResult AddEmployee(AddEmployeeViewModel evm)
         {
+            if(Request.Files.Count >= 1)
+            {
+                var file = Request.Files[0];
+                var imgBytes = new Byte[0];
+
+                try
+
+                {
+
+                    imgBytes = new Byte[file.ContentLength];
+
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength);
+
+                }
+
+                catch (Exception)
+
+                {
+
+                    imgBytes = new Byte[file.ContentLength - 1];
+
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength);
+
+                }
+                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);
+                evm.ImageUrl = base64String;
+            }
             ie.InsertEmployee(evm);
             return View();
 
