@@ -1,0 +1,43 @@
+﻿@using System.Web.Optimization
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - Employee Management</title>
+    @Styles.Render("~/Styles/bootstrap")
+    @Styles.Render("~/Styles/site")
+    @Scripts.Render("~/Scripts/bootstrap")
+
+</head>
+<body>
+    
+        <nav class="navbar navbar-expand-sm  bg-light navbar-light">
+            <a href="#" class="navbar-brand">Employee Management</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarmenu">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="EmployeeMenu" data-toggle="dropdown">Employee</a>
+                        <div class="dropdown-menu" aria-labelledby="Employeemenu">
+                            <a class="dropdown-item" href="/Employee/AddEmployee">Add Employee</a>
+                            <a class="dropdown-item" href="/Employee/FindEmployee">Update Employee</a>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </nav>
+
+
+        <div>
+
+            @RenderBody()
+        </div>
+    
+</body>
+</html>
