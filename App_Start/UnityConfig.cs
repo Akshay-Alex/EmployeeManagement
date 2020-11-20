@@ -12,6 +12,8 @@ namespace EmployeeManagement
         {
 			var container = new UnityContainer();
             container.RegisterType<IEmployeeService, EmployeeService>();
+            container.RegisterType<IUsersService, UsersService>();
+            //container.RegisterType<IEmployeeService, EmployeeService>();
             DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);
             // register all your components with the container here
