@@ -54,6 +54,7 @@ namespace EmployeeManagement.Controllers
                 evm.ImageUrl = base64String;
             }
             ie.InsertEmployee(evm);
+            Session["CurrentImageUrl"] = evm.ImageUrl;
             return View();
 
         }

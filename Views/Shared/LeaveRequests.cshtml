@@ -1,0 +1,23 @@
+﻿@model EmployeeManagement.ViewModels.LeaveViewModel
+<form action="/Leave/ApproveLeave" method="post">
+    <tr>
+
+        <td>@Model.LeaveID</td>
+        @Html.HiddenFor(temp => temp.LeaveID)
+        <td>@Model.EmployeeID</td>
+        @Html.HiddenFor(temp => temp.EmployeeID)
+        <td>@Model.StartDate</td>
+        @Html.HiddenFor(temp => temp.StartDate)
+        <td>@Model.EndDate</td>
+        @Html.HiddenFor(temp => temp.EndDate)
+        <td>@Model.IsApproved</td>
+        @Html.HiddenFor(temp => temp.IsApproved)
+        @if (!Model.IsApproved)
+        {
+            <td><input type="submit" value="Approve" /></td>
+        }
+
+
+
+    </tr>
+</form>

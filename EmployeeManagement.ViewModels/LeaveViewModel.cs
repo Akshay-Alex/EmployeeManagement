@@ -8,10 +8,10 @@ namespace EmployeeManagement.ViewModels
 {
     public class LeaveViewModel
     {
-        public int LeaveID;
-        public int EmployeeID;
-        public DateTime StartDate;
-        public DateTime EndDate;
-        public bool IsApproved;
+        public int LeaveID { get; set; }
+        public int EmployeeID { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

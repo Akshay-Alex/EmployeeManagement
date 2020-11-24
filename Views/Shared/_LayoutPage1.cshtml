@@ -29,14 +29,36 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="AccountMenu" data-toggle="dropdown">Account</a>
-                        <div class="dropdown-menu" aria-labelledby="AccountMenu">
-                            <a class="dropdown-item" href="/Account/Register">Register</a>
-                            <a class="dropdown-item" href="/Account/Login">Login</a>
-
+                        <a class="nav-link dropdown-toggle" href="#" id="LeaveMenu" data-toggle="dropdown">Leave Management</a>
+                        <div class="dropdown-menu" aria-labelledby="LeaveMenu">
+                            <a class="dropdown-item" href="/Leave/GetLeaveRequests/">Leave Requests</a>
+                            
                         </div>
                     </li>
+                    @if (Session["CurrentUserName"] == null)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="AccountMenu" data-toggle="dropdown">Account</a>
+                            <div class="dropdown-menu" aria-labelledby="AccountMenu">
+                                <a class="dropdown-item" href="/Account/Register">Register</a>
+                                <a class="dropdown-item" href="/Account/Login">Login</a>
 
+                            </div>
+                        </li>
+                    }
+                    @if (Session["CurrentUserName"] != null)
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                @Session["CurrentUserName"]
+                            </a>
+                            <div class="dropdown-menu bg-info">
+                                <a class="dropdown-item" href="/account/logout">Logout</a>
+
+                            </div>
+
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>

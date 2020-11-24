@@ -33,7 +33,7 @@ namespace EmployeeManagement.Controllers
                 Session["CurrentUserName"] = rvm.Name;
                 Session["CurrentUserEmail"] = rvm.Email;
                 Session["CurrentUserPassword"] = rvm.Password;
-                Session["CurrentUserIsAdmin"] = false;
+                Session["CurrentRole"] = rvm.Role;
                 return RedirectToAction("Index", "Home");
 
             }
