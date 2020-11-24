@@ -20,5 +20,6 @@ namespace EmployeeManagement.DomainModels
         public string Role { get; set; }
 
 
+
     }
 }

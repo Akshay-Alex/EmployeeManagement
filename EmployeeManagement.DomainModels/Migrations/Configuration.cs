@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagement.Migrations
+﻿namespace EmployeeManagement.DomainModels.Migrations
 {
     using System;
     using System.Data.Entity;
@@ -10,6 +10,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            ContextKey = "EmployeeManagement.DomainModels.EmpDbcontext";
         }
 
         protected override void Seed(EmployeeManagement.DomainModels.EmpDbcontext context)

@@ -54,12 +54,22 @@
     <Compile Include="EmpDbcontext.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Leave.cs" />
+    <Compile Include="Migrations\202011240748364_role.cs" />
+    <Compile Include="Migrations\202011240748364_role.designer.cs">
+      <DependentUpon>202011240748364_role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202011240748364_role.resx">
+      <DependentUpon>202011240748364_role.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
