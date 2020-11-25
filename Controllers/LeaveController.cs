@@ -8,6 +8,7 @@ using EmployeeManagement.ViewModels;
 
 namespace EmployeeManagement.Controllers
 {
+    [Authorize(Roles = "Project Manager")]
     public class LeaveController : Controller
     {
         // GET: Leave

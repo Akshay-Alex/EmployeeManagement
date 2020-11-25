@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using EmployeeManagement.ViewModels;
 using EmployeeManagement.ServiceLayer;
 using EmployeeManagement.CustomFilters;
+using System.Web.Security;
 
 namespace EmployeeManagement.Controllers
 {
@@ -28,6 +29,7 @@ namespace EmployeeManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                FormsAuthentication.SetAuthCookie(rvm.Name, false);
                 int uid = this.us.InsertUser(rvm);
                 Session["CurrentUserID"] = uid;
                 Session["CurrentUserName"] = rvm.Name;
@@ -59,6 +61,7 @@ namespace EmployeeManagement.Controllers
                 UserViewModel uvm = this.us.GetUsersByEmailAndPassword(lvm.Email, lvm.Password);
                 if (uvm != null)
                 {
+                    FormsAuthentication.SetAuthCookie(uvm.Name, false);
                     Session["CurrentUserID"] = uvm.UserID;
                     Session["CurrentUserName"] = uvm.Name;
                     Session["CurrentUserEmail"] = uvm.Email;

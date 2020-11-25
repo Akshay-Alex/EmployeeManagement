@@ -7,8 +7,11 @@ using EmployeeManagement.ServiceLayer;
 using EmployeeManagement.ViewModels;
 using System.Web.SessionState;
 
+
 namespace EmployeeManagement.Controllers
 {
+    
+    [Authorize(Roles = "HR")]
     public class EmployeeController : Controller
     {
         // GET: Employee
@@ -18,6 +21,7 @@ namespace EmployeeManagement.Controllers
         {
             return View();
         }
+        
         public ActionResult AddEmployee()
         {
             AddEmployeeViewModel evm = new AddEmployeeViewModel();
