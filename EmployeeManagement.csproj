@@ -274,6 +274,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveController.cs" />
+    <Compile Include="Controllers\LeaveRequestController.cs" />
     <Compile Include="CustomFilters\UserAuthorizationFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -294,6 +295,9 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Leave\GetLeaveRequests.cshtml" />
     <Content Include="Views\Shared\LeaveRequests.cshtml" />
+    <Content Include="Views\Shared\EmployeeView.cshtml" />
+    <Content Include="Views\Employee\SearchEmployee.cshtml" />
+    <Content Include="Views\LeaveRequest\NewRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

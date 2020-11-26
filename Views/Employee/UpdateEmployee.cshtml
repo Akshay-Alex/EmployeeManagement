@@ -9,14 +9,15 @@
         <h1>Please enter Employee details</h1>
         <form novalidate="novalidate" action="/Employee/UpdateEmployee" method="post" class="needs-validation" enctype="multipart/form-data">
             <div class="form-row">
-                <div class="form-group col-sm-6">Photo :
+                <div class="form-group col-sm-6">
+                    Photo :
                     <img src="data:image;base64,@Model.ImageUrl" width="100px" />
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     Name :
-                    <input type="text" class="form-control" name="EmployeeName" value= "@Model.EmployeeName" required="required" pattern="^[a-zA-Z ]*$" />
+                    <input type="text" class="form-control" name="EmployeeName" value="@Model.EmployeeName" required="required" pattern="^[a-zA-Z ]*$" />
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -28,7 +29,7 @@
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     Email :
-                    <input type="email" class="form-control" name="Email" value= "@Model.Email" required="required" />
+                    <input type="email" class="form-control" name="Email" value="@Model.Email" required="required" />
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -40,7 +41,7 @@
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     Phone number :
-                    <input type="text" class="form-control" name="PhoneNumber" value= "@Model.PhoneNumber" required="required" pattern="^[789]\d{9}$" />
+                    <input type="text" class="form-control" name="PhoneNumber" value="@Model.PhoneNumber" required="required" pattern="^[789]\d{9}$" />
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -50,7 +51,8 @@
                 </div>
                 @Html.HiddenFor(Model => Model.EmployeeID)
             </div>
-            <button type="submit" class="btn btn-primary">Update Employee</button>
+            <button type="submit" class="btn btn-primary" name ="submit" value="Update">Update Employee</button>
+            <button type="submit" class="btn btn-danger" name ="submit" value="Delete">Delete Employee</button>
         </form>
     </div>
 </div>

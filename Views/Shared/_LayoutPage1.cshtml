@@ -21,20 +21,27 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarmenu">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="EmployeeMenu" data-toggle="dropdown">Employee</a>
-                        <div class="dropdown-menu" aria-labelledby="EmployeeMenu">
-                            <a class="dropdown-item" href="/Employee/AddEmployee">Add Employee</a>
-                            <a class="dropdown-item" href="/Employee/FindEmployee">Update Employee</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="LeaveMenu" data-toggle="dropdown">Leave Management</a>
-                        <div class="dropdown-menu" aria-labelledby="LeaveMenu">
-                            <a class="dropdown-item" href="/Leave/GetLeaveRequests/">Leave Requests</a>
-                            
-                        </div>
-                    </li>
+                    @if (Convert.ToString(Session["CurrentUserRole"]) == "HR")
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="EmployeeMenu" data-toggle="dropdown">Employee</a>
+                            <div class="dropdown-menu" aria-labelledby="EmployeeMenu">
+                                <a class="dropdown-item" href="/Employee/AddEmployee">Add Employee</a>
+                                <a class="dropdown-item" href="/Employee/FindEmployee">Update Employee</a>
+                                <a class="dropdown-item" href="/Employee/SearchEmployee">Search Employee</a>
+                            </div>
+                        </li>
+                    }
+                    @if (Convert.ToString(Session["CurrentUserRole"]) == "Project Manager")
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="LeaveMenu" data-toggle="dropdown">Leave Management</a>
+                            <div class="dropdown-menu" aria-labelledby="LeaveMenu">
+                                <a class="dropdown-item" href="/Leave/GetLeaveRequests/">Leave Requests</a>
+
+                            </div>
+                        </li>
+                    }
                     @if (Session["CurrentUserName"] == null)
                     {
                         <li class="nav-item dropdown">

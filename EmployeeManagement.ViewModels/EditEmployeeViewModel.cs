@@ -19,5 +19,6 @@ namespace EmployeeManagement.ViewModels
         public string Email { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
+        public string Role { get; set; }
     }
 }

@@ -16,8 +16,11 @@ namespace EmployeeManagement.ServiceLayer
     {
         int InsertEmployee(AddEmployeeViewModel aem);
         void UpdateEmployeeDetails(EmployeeViewModel eem);
+        void DeleteEmployeeDetails(EmployeeViewModel eem);
         List<EmployeeViewModel> GetEmployeesByName(string name);
         EmployeeViewModel GetEmployeesByEmployeeID(int eid);
+        List<EmployeeViewModel> GetEmployeesByRole(string role);
+        string[] GetAllRoles();
     }
     public class EmployeeService : IEmployeeService
     {
@@ -42,6 +45,13 @@ namespace EmployeeManagement.ServiceLayer
             Employee e = mapper.Map<EmployeeViewModel, Employee>(eem);
             er.UpdateEmployeeDetails(e);
         }
+        public void DeleteEmployeeDetails(EmployeeViewModel eem)
+        {
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<EmployeeViewModel, Employee>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            Employee e = mapper.Map<EmployeeViewModel, Employee>(eem);
+            er.DeleteEmployeeDetails(e);
+        }
         public List<EmployeeViewModel> GetEmployeesByName(string name)
         {
             List<Employee> e = er.GetEmployeesByName(name);
@@ -49,6 +59,19 @@ namespace EmployeeManagement.ServiceLayer
             IMapper mapper = config.CreateMapper();
             List<EmployeeViewModel> evm = mapper.Map<List<Employee>,List< EmployeeViewModel >> (e);
             return evm;
+        }
+        public List<EmployeeViewModel> GetEmployeesByRole(string role)
+        {
+            List<Employee> e = er.GetEmployeesByRole(role);
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Employee, EditEmployeeViewModel>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            List<EmployeeViewModel> evm = mapper.Map<List<Employee>, List<EmployeeViewModel>>(e);
+            return evm;
+        }
+        public string[] GetAllRoles()
+        {
+            string[] roles = er.GetAllRoles();
+            return roles;
         }
         public EmployeeViewModel GetEmployeesByEmployeeID(int eid)
         {

@@ -1,0 +1,16 @@
+﻿@model EmployeeManagement.ViewModels.EmployeeViewModel
+    
+<tbody>
+    <tr>
+        <td>@Model.EmployeeID</td>
+        <td>@Model.EmployeeName</td>
+        <td>@Model.Email</td>
+        <td>@Model.PhoneNumber</td>
+        <td>@Model.Role</td>
+        <td>
+            
+            <img src="data:image;base64,@Model.ImageUrl" width="100px" />
+        </td>
+    </tr>
+</tbody>
+        

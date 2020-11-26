@@ -9,7 +9,8 @@
         <h1>Please enter Employee details</h1>
         <form novalidate="novalidate" action="/Employee/AddEmployee" method="post" class="needs-validation" enctype="multipart/form-data">
             <div class="form-row">
-                <div class="form-group col-sm-6">Name :
+                <div class="form-group col-sm-6">
+                    Name :
                     <input type="text" class="form-control" name="EmployeeName" required="required" pattern="^[a-zA-Z ]*$" />
                     <div class="valid-feedback">
                         Looks good!
@@ -20,7 +21,8 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-sm-6">Email :
+                <div class="form-group col-sm-6">
+                    Email :
                     <input type="email" class="form-control" name="Email" required="required" />
                     <div class="valid-feedback">
                         Looks good!
@@ -31,7 +33,19 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-sm-6"> Phone number:
+                <div class="form-group col-sm-6">
+                    <label for="Role">Role</label>
+                    <input list="Role" name="Role">
+                    <datalist id="Role">
+                        <option value="HR">
+                        <option value="Project Manager">
+                        <option value="Employee">
+                    </datalist>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-sm-6">
+                    Phone number:
                     <input type="text" class="form-control" name="PhoneNumber" required="required" pattern="^[789]\d{9}$" />
                     <div class="valid-feedback">
                         Looks good!
@@ -39,14 +53,14 @@
                     <div class="invalid-feedback">
                         Invalid mobile Number.
                     </div>
-                    </div>
                 </div>
-                
-                @{Html.RenderPartial("UploadImageView");
-                }
+            </div>
+
+            @{Html.RenderPartial("UploadImageView");
+            }
 
 
-                    <button type="submit" class="btn btn-primary">Add Employee</button>
+            <button type="submit" class="btn btn-primary">Add Employee</button>
         </form>
     </div>
 </div>

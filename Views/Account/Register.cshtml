@@ -1,4 +1,5 @@
-﻿@{
+﻿@model EmployeeManagement.ViewModels.RegisterViewModel
+@{
     ViewBag.Title = "Register";
 }
 <div class="row">
@@ -72,9 +73,9 @@
                     <label for="Role">Role</label>
                     <input list="Role" name="Role">
                     <datalist id="Role">
-                        <option value="HR">
-                        <option value="Project Manager">
-                        <option value="Employee">
+                        <option value="HR" >
+                        <option value="Project Manager" >
+                        <option value="Employee" >
                     </datalist>
                 </div>
             </div>
@@ -88,8 +89,7 @@
     $(document).on("submit", ".needs-validation", validate);
     $(".needs-validation input").blur(validate);
     function validate(event) {
-        if ($(".needs-validation")[0].checkValidity() == false )
-        {
+        if ($(".needs-validation")[0].checkValidity() == false) {
             event.preventDefault();
         }
         $(".needs-validation")[0].classList.add("was-validated");
@@ -97,5 +97,5 @@
     function escapeRegExp(str) {
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$]\|]/g, "\\$&");
     }
-    
+
 </script>

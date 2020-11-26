@@ -21,6 +21,7 @@ namespace EmployeeManagement.Controllers
 
         public ActionResult Register()
         {
+            RegisterViewModel rvm = new RegisterViewModel();
             return View();
         }
         [ValidateAntiForgeryToken]
@@ -35,7 +36,7 @@ namespace EmployeeManagement.Controllers
                 Session["CurrentUserName"] = rvm.Name;
                 Session["CurrentUserEmail"] = rvm.Email;
                 Session["CurrentUserPassword"] = rvm.Password;
-                Session["CurrentRole"] = rvm.Role;
+                Session["CurrentUserRole"] = rvm.Role;
                 return RedirectToAction("Index", "Home");
 
             }

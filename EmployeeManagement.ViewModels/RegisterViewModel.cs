@@ -12,7 +12,7 @@ namespace EmployeeManagement.ViewModels
     public class RegisterViewModel
     {
         [Required]
-        [RegularExpression(@"(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})")]
+        
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
@@ -24,8 +24,6 @@ namespace EmployeeManagement.ViewModels
         public string Name { get; set; }
         [Required]
         public string Mobile { get; set; }
-        
-
         public string Role { get; set; }
 
 

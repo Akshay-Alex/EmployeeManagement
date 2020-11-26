@@ -1,0 +1,46 @@
+﻿@model List<EmployeeManagement.ViewModels.EmployeeViewModel>
+@{
+    ViewBag.Title = "Search employee by role";
+}
+
+<div class="p-3">
+    <h2>Search employee by role</h2>
+    <form action="/Employee/SearchEmployee" method="post">
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <label for="Role">Role</label>
+                <input list="Role" name="Role">
+                <datalist id="Role">
+                    <option value="HR">
+                    <option value="Project Manager">
+                    <option value="Employee">
+                </datalist>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Search role</button>
+        <div class="p-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Employee ID</th>
+                        <th scope="col">Employee Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Photo</th>
+                    </tr>
+                </thead>
+                
+                @if (Model != null)
+                {
+
+                    foreach (var item in Model)
+                    {
+                        Html.RenderPartial("EmployeeView", item);
+                    }
+                }
+            </table>
+        </div>
+    </form>
+</div>
+

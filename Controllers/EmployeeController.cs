@@ -11,7 +11,7 @@ using System.Web.SessionState;
 namespace EmployeeManagement.Controllers
 {
     
-    [Authorize(Roles = "HR")]
+    
     public class EmployeeController : Controller
     {
         // GET: Employee
@@ -80,16 +80,38 @@ namespace EmployeeManagement.Controllers
         }
         public ActionResult UpdateEmployee()
         {
+            
             EmployeeViewModel e = ie.GetEmployeesByEmployeeID(Convert.ToInt32(Session["EmpID"]));
             return View(e);
         }
         [HttpPost]
-        public ActionResult UpdateEmployee(EmployeeViewModel ev)
+        public ActionResult UpdateEmployee(EmployeeViewModel ev, string submit)
         {
-            ev.EmployeeID = Convert.ToInt32(Session["EmpID"]);
-            ie.UpdateEmployeeDetails(ev);
-            return RedirectToAction("Index","Home");
+            if (submit == "Update")
+            {
+                ev.EmployeeID = Convert.ToInt32(Session["EmpID"]);
+                ie.UpdateEmployeeDetails(ev);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ev.EmployeeID = Convert.ToInt32(Session["EmpID"]);
+                ie.DeleteEmployeeDetails(ev);
+                return RedirectToAction("Index", "Home");
+            }
         }
+        public ActionResult SearchEmployee()
+        {
+            List<EmployeeViewModel> evm = new List<EmployeeViewModel>();
+            return View(evm);
+        }
+        [HttpPost]
+        public ActionResult SearchEmployee(EmployeeViewModel evm)
+        {
+            List<EmployeeViewModel> e = ie.GetEmployeesByRole(evm.Role);
+            return View(e);
+        }
+
     }
 
 }
