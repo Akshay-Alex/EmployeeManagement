@@ -298,6 +298,10 @@
     <Content Include="Views\Shared\EmployeeView.cshtml" />
     <Content Include="Views\Employee\SearchEmployee.cshtml" />
     <Content Include="Views\LeaveRequest\NewRequest.cshtml" />
+    <Content Include="Views\Account\FindEmployee.cshtml" />
+    <Content Include="Views\Account\UpdateEmployee.cshtml" />
+    <Content Include="Views\Account\SearchEmployee.cshtml" />
+    <Content Include="Views\LeaveRequest\LeaveStatus.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

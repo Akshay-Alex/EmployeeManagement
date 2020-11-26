@@ -11,6 +11,7 @@ namespace EmployeeManagement.Repositories
     {
         void RequestLeave(Leave l);
         void ApproveLeave(Leave l);
+        void RejectLeave(Leave l);
         List<Leave> GetLeaveRequests();
         List<Leave> GetLeaveRequestsByEmployeeID(int eid);
     }
@@ -29,10 +30,19 @@ namespace EmployeeManagement.Repositories
 
         public void ApproveLeave(Leave l)
         {
-            Leave ls = db.LeaveRequests.Where(temp => temp.EmployeeID == l.EmployeeID).FirstOrDefault();
+            Leave ls = db.LeaveRequests.Where(temp => temp.LeaveID == l.LeaveID).FirstOrDefault();
             if(ls != null)
             {
-                ls.IsApproved = true;
+                ls.IsApproved = "Approved";
+                db.SaveChanges();
+            }
+        }
+        public void RejectLeave(Leave l)
+        {
+            Leave ls = db.LeaveRequests.Where(temp => temp.LeaveID == l.LeaveID).FirstOrDefault();
+            if (ls != null)
+            {
+                ls.IsApproved = "Rejected";
                 db.SaveChanges();
             }
         }

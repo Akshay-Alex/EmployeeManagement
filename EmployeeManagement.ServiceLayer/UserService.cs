@@ -16,7 +16,14 @@ namespace EmployeeManagement.ServiceLayer
         int InsertUser(RegisterViewModel uvm);
         
         UserViewModel GetUsersByEmailAndPassword(string Email, string Password);
-        
+        int GetLatestUserID();
+
+        UserViewModel GetUserByUserID(int UserID);
+        void UpdateUserDetails(UserViewModel uvm);
+        void DeleteUserDetails(UserViewModel uvm);
+        string[] GetAllRoles();
+        List<UserViewModel> GetUsersByRole(string role);
+
 
     }
     public class UsersService : IUsersService
@@ -38,8 +45,27 @@ namespace EmployeeManagement.ServiceLayer
             int uid = ur.GetLatestUserID();
             return uid;
         }
-     
-        
+        public int GetLatestUserID()
+        {
+            int uid = ur.GetLatestUserID();
+            return uid;
+        }
+        public void UpdateUserDetails(UserViewModel uvm)
+        {
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<UserViewModel, User>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            User u = mapper.Map<UserViewModel, User>(uvm);
+            ur.UpdateUserDetails(u);  
+        }
+        public void DeleteUserDetails(UserViewModel uvm)
+        {
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<UserViewModel, User>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            User u = mapper.Map<UserViewModel, User>(uvm);
+            ur.DeleteUserDetails(u);
+        }
+
+
         public UserViewModel GetUsersByEmailAndPassword(string Email, string Password)
         {
             User u = ur.GetUsersByEmailAndPassword(Email, SHA256HashGenerator.GenerateHash(Password)).FirstOrDefault();
@@ -52,8 +78,33 @@ namespace EmployeeManagement.ServiceLayer
             }
             return uvm;
         }
-        
-        
+        public UserViewModel GetUserByUserID(int UserID)
+        {
+            User u = ur.GetUserByUserID(UserID).FirstOrDefault();
+            UserViewModel uvm = null;
+            if (u != null)
+            {
+                var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); cfg.IgnoreUnmapped(); });
+                IMapper mapper = config.CreateMapper();
+                uvm = mapper.Map<User, UserViewModel>(u);
+            }
+            return uvm;
+        }
+        public string[] GetAllRoles()
+        {
+            string[] roles = ur.GetAllRoles();
+            return roles;
+        }
+        public List<UserViewModel> GetUsersByRole(string role)
+        {
+            List<User> e = ur.GetUsersByRole(role);
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            List<UserViewModel> evm = mapper.Map<List<User>, List<UserViewModel>>(e);
+            return evm;
+        }
+
+
 
 
     }

@@ -1,5 +1,5 @@
 ﻿@model EmployeeManagement.ViewModels.LeaveViewModel
-<form action="/Leave/ApproveLeave" method="post">
+<form action="/Leave/ApproveorRejectLeave" method="post">
     <tr>
 
         <td>@Model.LeaveID</td>
@@ -12,9 +12,10 @@
         @Html.HiddenFor(temp => temp.EndDate)
         <td>@Model.IsApproved</td>
         @Html.HiddenFor(temp => temp.IsApproved)
-        @if (!Model.IsApproved)
+        @if (Model.IsApproved == "Pending" && Convert.ToString(Session["CurrentUserRole"]) == "Project Manager")
         {
-            <td><input type="submit" value="Approve" /></td>
+            <td><input type="submit" class="btn btn-secondary"  name="submit" value="Approve" /></td>
+            <td><input type="submit" class="btn btn-danger" name="submit" value="Reject" /></td>
         }
 
 

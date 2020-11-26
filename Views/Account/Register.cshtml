@@ -73,12 +73,14 @@
                     <label for="Role">Role</label>
                     <input list="Role" name="Role">
                     <datalist id="Role">
-                        <option value="HR" >
-                        <option value="Project Manager" >
-                        <option value="Employee" >
+                        <option value="HR">
+                        <option value="Project Manager">
+                        <option value="Employee">
                     </datalist>
                 </div>
             </div>
+            @{Html.RenderPartial("UploadImageView");
+            }
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
 

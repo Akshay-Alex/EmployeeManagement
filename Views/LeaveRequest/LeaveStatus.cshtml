@@ -1,0 +1,28 @@
+﻿@model List<EmployeeManagement.ViewModels.LeaveViewModel>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table p-3 border-dark">
+
+            <thead>
+                <tr>
+                    <th scope="col">Leave ID</th>
+                    <th scope="col">Employee ID</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col">Approval Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    Html.RenderPartial("LeaveRequests", item);
+                }
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Find employee";
+}
+
+<div class="row p-3">
+    <div class="col-sm-12">
+        <h3>Please enter Employee ID</h3>
+        <form novalidate="novalidate" action="/Account/FindEmployee" method="post" class="needs-validation">
+            <div class="form-row">
+                <div class="form-group col-sm-6">
+                    <input type="text" class="form-control" name="UserID" required="required" pattern="^[123456789]\d{9}$" />
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter valid EmpID.
+                    </div>
+                </div>
+
+            </div>
+            @Html.ValidationSummary()
+            <button type="submit" class="btn btn-primary">Find Employee</button>
+        </form>
+    </div>
+</div>

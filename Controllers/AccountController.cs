@@ -14,6 +14,7 @@ namespace EmployeeManagement.Controllers
     {
         // GET: Account
         IUsersService us;
+        
         public AccountController(IUsersService us)
         {
             this.us = us;
@@ -28,16 +29,45 @@ namespace EmployeeManagement.Controllers
         [HttpPost]
         public ActionResult Register(RegisterViewModel rvm)
         {
+            if (Request.Files.Count >= 1)
+            {
+                var file = Request.Files[0];
+                var imgBytes = new Byte[0];
+
+                try
+
+                {
+
+                    imgBytes = new Byte[file.ContentLength];
+
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength);
+
+                }
+
+                catch (Exception)
+
+                {
+
+                    imgBytes = new Byte[file.ContentLength - 1];
+
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength);
+
+                }
+                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);
+                rvm.ImageUrl = base64String;
+            }
             if (ModelState.IsValid)
             {
                 FormsAuthentication.SetAuthCookie(rvm.Name, false);
                 int uid = this.us.InsertUser(rvm);
-                Session["CurrentUserID"] = uid;
+                Session["CurrentUserID"] = us.GetLatestUserID();
                 Session["CurrentUserName"] = rvm.Name;
                 Session["CurrentUserEmail"] = rvm.Email;
                 Session["CurrentUserPassword"] = rvm.Password;
                 Session["CurrentUserRole"] = rvm.Role;
+                Session["CurrentImageUrl"] = rvm.ImageUrl;
                 return RedirectToAction("Index", "Home");
+
 
             }
             else
@@ -83,6 +113,7 @@ namespace EmployeeManagement.Controllers
                 else
                 {
                     ModelState.AddModelError("x", "Invalid Email / Password");
+                    return View(lvm);
                 }
             }
             return RedirectToAction("Index", "Home");
@@ -92,6 +123,59 @@ namespace EmployeeManagement.Controllers
         {
             Session.Abandon();
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult FindEmployee()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult FindEmployee(int UserID)
+        {
+            UserViewModel u = us.GetUserByUserID(UserID);
+            if (u != null)
+            {
+                Session["UserID"] = UserID;
+                return RedirectToAction("UpdateEmployee");
+            }
+            ModelState.AddModelError("EmpID", "There is no Employee with the specified Employee ID");
+            return View();
+        }
+        public ActionResult UpdateEmployee()
+        {
+
+            UserViewModel u = us.GetUserByUserID(Convert.ToInt32(Session["UserID"]));
+            return View(u);
+        }
+        [HttpPost]
+        public ActionResult UpdateEmployee(UserViewModel ev, string submit)
+        {
+            if (submit == "Update")
+            {
+                ev.UserID = Convert.ToInt32(Session["UserID"]);
+                us.UpdateUserDetails(ev);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ev.UserID = Convert.ToInt32(Session["UserID"]);
+                us.DeleteUserDetails(ev);
+                if (Convert.ToInt32(Session["CurrentUserID"]) == Convert.ToInt32(Session["UserID"]))
+                {
+                    return RedirectToAction("Logout", "Account");
+                }
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        public ActionResult SearchEmployee()
+        {
+            List<UserViewModel> evm = new List<UserViewModel>();
+            return View(evm);
+        }
+        [HttpPost]
+        public ActionResult SearchEmployee(UserViewModel evm)
+        {
+            List<UserViewModel> e = us.GetUsersByRole(evm.Role);
+            return View(e);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace EmployeeManagement.ServiceLayer
     {
         void RequestLeave(LeaveViewModel l);
         void ApproveLeave(LeaveViewModel l);
+        void RejectLeave(LeaveViewModel l);
         List<LeaveViewModel> GetLeaveRequests();
         List<LeaveViewModel> GetLeaveRequestsByEmployeeID(int eid);
     }
@@ -39,6 +40,13 @@ namespace EmployeeManagement.ServiceLayer
             IMapper mapper = config.CreateMapper();
             Leave lv = mapper.Map<LeaveViewModel, Leave>(l);
             ir.ApproveLeave(lv);
+        }
+        public void RejectLeave(LeaveViewModel l)
+        {
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<LeaveViewModel, Leave>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            Leave lv = mapper.Map<LeaveViewModel, Leave>(l);
+            ir.RejectLeave(lv);
         }
         public List<LeaveViewModel> GetLeaveRequests()
         {

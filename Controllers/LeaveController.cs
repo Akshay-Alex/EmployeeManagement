@@ -28,12 +28,19 @@ namespace EmployeeManagement.Controllers
             return View(lvm);
         }
         [HttpPost]
-        public ActionResult ApproveLeave(LeaveViewModel lvm)
+        public ActionResult ApproveorRejectLeave(LeaveViewModel lvm,string submit)
         {
-            
-            il.ApproveLeave(lvm);
-            return RedirectToAction("GetLeaveRequests");
+            if (submit == "Approve")
+            {
+                il.ApproveLeave(lvm);
+                return RedirectToAction("GetLeaveRequests");
+            }
+            else
+            {
+                il.RejectLeave(lvm);
+                return RedirectToAction("GetLeaveRequests");
+            }
+        }
             
         }
     }
-}
