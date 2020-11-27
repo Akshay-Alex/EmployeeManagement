@@ -66,6 +66,7 @@ namespace EmployeeManagement.Controllers
                 Session["CurrentUserPassword"] = rvm.Password;
                 Session["CurrentUserRole"] = rvm.Role;
                 Session["CurrentImageUrl"] = rvm.ImageUrl;
+                Session["IsSpecialPermission"] = rvm.IsSpecialPermission;
                 return RedirectToAction("Index", "Home");
 
 
@@ -98,6 +99,7 @@ namespace EmployeeManagement.Controllers
                     Session["CurrentUserEmail"] = uvm.Email;
                     Session["CurrentUserPassword"] = uvm.Password;
                     Session["CurrentUserRole"] = uvm.Role;
+                    Session["IsSpecialPermission"] = uvm.IsSpecialPermission;
                 }
                 /*if (uvm.Role)
                 {

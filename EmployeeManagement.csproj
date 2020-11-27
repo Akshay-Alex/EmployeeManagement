@@ -276,6 +276,7 @@
     <Compile Include="Controllers\LeaveController.cs" />
     <Compile Include="Controllers\LeaveRequestController.cs" />
     <Compile Include="CustomFilters\UserAuthorizationFilterAttribute.cs" />
+    <Compile Include="Filters\ManagerOrSpecialHR.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

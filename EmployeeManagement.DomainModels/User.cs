@@ -19,7 +19,7 @@ namespace EmployeeManagement.DomainModels
         public string Mobile { get; set; }
         public string Role { get; set; }
         public string ImageUrl { get; set; }
-
+        public bool IsSpecialPermission { get; set; }
 
 
     }

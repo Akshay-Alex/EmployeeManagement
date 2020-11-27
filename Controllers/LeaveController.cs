@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using EmployeeManagement.ServiceLayer;
 using EmployeeManagement.ViewModels;
+using EmployeeManagement.Filters;
 
 namespace EmployeeManagement.Controllers
 {
-    [Authorize(Roles = "Project Manager")]
+    [ManagerOrSpecialHR]
     public class LeaveController : Controller
     {
         // GET: Leave

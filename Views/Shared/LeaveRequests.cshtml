@@ -12,7 +12,7 @@
         @Html.HiddenFor(temp => temp.EndDate)
         <td>@Model.IsApproved</td>
         @Html.HiddenFor(temp => temp.IsApproved)
-        @if (Model.IsApproved == "Pending" && Convert.ToString(Session["CurrentUserRole"]) == "Project Manager")
+        @if (Model.IsApproved == "Pending" && (Convert.ToString(HttpContext.Current.Session["CurrentUserRole"]) == "Project Manager" || (Convert.ToString(HttpContext.Current.Session["CurrentUserRole"]) == "HR" && Convert.ToString(HttpContext.Current.Session["IsSpecialPermission"]) == "True")))
         {
             <td><input type="submit" class="btn btn-secondary"  name="submit" value="Approve" /></td>
             <td><input type="submit" class="btn btn-danger" name="submit" value="Reject" /></td>

@@ -32,7 +32,7 @@
                             </div>
                         </li>
                     }
-                    @if (Convert.ToString(Session["CurrentUserRole"]) == "Project Manager")
+                    @if (Convert.ToString(HttpContext.Current.Session["CurrentUserRole"]) == "Project Manager" || (Convert.ToString(HttpContext.Current.Session["CurrentUserRole"]) == "HR" && Convert.ToString(HttpContext.Current.Session["IsSpecialPermission"]) == "True"))
                     {
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="LeaveMenu" data-toggle="dropdown">Leave Management</a>
