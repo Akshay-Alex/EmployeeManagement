@@ -31,7 +31,8 @@
     </div>
 </div>
 <script>
-    $("a[href='/account/login']").attr("id", "active");
+    $(".activenavlink").removeClass("activenavlink");
+    $("#AccountMenu").addClass("activenavlink");
     $(document).on("submit", ".needs-validation", validate);
     $(".needs-validation input").blur(validate);
     function validate(event) {

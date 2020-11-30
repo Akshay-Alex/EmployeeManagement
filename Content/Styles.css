@@ -1,3 +1,6 @@
 ﻿.navbar-brand {
     font-size: 25px;
 }
+.activenavlink {
+    color: red !important;
+}

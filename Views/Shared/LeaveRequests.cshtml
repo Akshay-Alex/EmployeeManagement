@@ -6,16 +6,21 @@
         @Html.HiddenFor(temp => temp.LeaveID)
         <td>@Model.EmployeeID</td>
         @Html.HiddenFor(temp => temp.EmployeeID)
-        <td>@Model.StartDate</td>
+        <td>@Model.StartDate.ToString("dd/MM/yyyy")</td>
         @Html.HiddenFor(temp => temp.StartDate)
-        <td>@Model.EndDate</td>
+        <td>@Model.EndDate.ToString("dd/MM/yyyy")</td>
         @Html.HiddenFor(temp => temp.EndDate)
         <td>@Model.IsApproved</td>
         @Html.HiddenFor(temp => temp.IsApproved)
         @if (Model.IsApproved == "Pending" && (Convert.ToString(HttpContext.Current.Session["CurrentUserRole"]) == "Project Manager" || (Convert.ToString(HttpContext.Current.Session["CurrentUserRole"]) == "HR" && Convert.ToString(HttpContext.Current.Session["IsSpecialPermission"]) == "True")))
         {
-            <td><input type="submit" class="btn btn-secondary"  name="submit" value="Approve" /></td>
-            <td><input type="submit" class="btn btn-danger" name="submit" value="Reject" /></td>
+    
+        <td>
+            <input type="submit" class="btn btn-secondary p-1 w-25" name="submit" value="Approve" />
+            <input type="submit" class="btn btn-danger p-1 w-25" name="submit" value="Reject" />
+            <a href="mailto:@Model.EmployeeMail" class="btn btn-dark p-1 w-25">Mail</a>
+        </td>
+    
         }
 
 

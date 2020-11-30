@@ -99,6 +99,7 @@ namespace EmployeeManagement.Controllers
                     Session["CurrentUserEmail"] = uvm.Email;
                     Session["CurrentUserPassword"] = uvm.Password;
                     Session["CurrentUserRole"] = uvm.Role;
+                    Session["CurrentImageUrl"] = uvm.ImageUrl;
                     Session["IsSpecialPermission"] = uvm.IsSpecialPermission;
                 }
                 /*if (uvm.Role)

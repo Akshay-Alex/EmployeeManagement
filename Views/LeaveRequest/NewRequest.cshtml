@@ -31,7 +31,8 @@
             </div>
             <input type="hidden" name="EmployeeID" value=@Convert.ToInt32(Session["CurrentUserID"])>
             <input type="hidden" name="IsApproved" value="Pending">
-            
+            <input type="hidden" name="EmployeeMail" value="@Convert.ToString(Session["CurrentUserEmail"])">
+
             <button type="submit" class="btn btn-primary">Apply for leave</button>
         </form>
     </div>

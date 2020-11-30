@@ -13,5 +13,6 @@ namespace EmployeeManagement.ViewModels
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string IsApproved { get; set; }
+        public string EmployeeMail { get; set; }
     }
 }

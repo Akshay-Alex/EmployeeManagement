@@ -48,7 +48,7 @@ namespace EmployeeManagement.Repositories
         }
         public List<Leave> GetLeaveRequests()
         {
-            List<Leave> lt = db.LeaveRequests.OrderByDescending(temp => temp.StartDate).ToList();
+            List<Leave> lt = db.LeaveRequests.OrderBy(temp => temp.StartDate).ToList();
             return lt;
         }
         public List<Leave> GetLeaveRequestsByEmployeeID(int eid)
