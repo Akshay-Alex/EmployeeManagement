@@ -22,7 +22,9 @@ namespace EmployeeManagement.ServiceLayer
         void UpdateUserDetails(UserViewModel uvm);
         void DeleteUserDetails(UserViewModel uvm);
         string[] GetAllRoles();
+        string[] GetAllNames();
         List<UserViewModel> GetUsersByRole(string role);
+        List<UserViewModel> GetUsersByName(string name);
 
 
     }
@@ -95,9 +97,22 @@ namespace EmployeeManagement.ServiceLayer
             string[] roles = ur.GetAllRoles();
             return roles;
         }
+        public string[] GetAllNames()
+        {
+            string[] names = ur.GetAllNames();
+            return names;
+        }
         public List<UserViewModel> GetUsersByRole(string role)
         {
             List<User> e = ur.GetUsersByRole(role);
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            List<UserViewModel> evm = mapper.Map<List<User>, List<UserViewModel>>(e);
+            return evm;
+        }
+        public List<UserViewModel> GetUsersByName(string name)
+        {
+            List<User> e = ur.GetUsersByName(name);
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<User, UserViewModel>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             List<UserViewModel> evm = mapper.Map<List<User>, List<UserViewModel>>(e);

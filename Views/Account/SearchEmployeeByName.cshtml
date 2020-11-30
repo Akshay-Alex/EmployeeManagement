@@ -1,0 +1,54 @@
+﻿@model EmployeeManagement.ViewModels.DataViewModel
+@{
+    ViewBag.Title = "Search employee by role";
+}
+
+<div class="p-3">
+    <h2>Search employee by Name</h2>
+    <form action="/Account/SearchEmployeeByName" method="post">
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <select name="name" id="name" class="w-25 ">
+
+                    @{foreach (var item in Model.namelist)
+                        {
+                            <option value="@item">@item</option>
+
+                        }
+                    }
+                </select>
+            
+
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Search Name</button>
+        <div class="p-3">
+        <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Employee ID</th>
+                <th scope="col">Employee Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Role</th>
+                <th scope="col">Photo</th>
+            </tr>
+        </thead>
+        @if (Model.Userlist != null)
+        {
+
+            foreach (var item in Model.Userlist)
+            {
+                Html.RenderPartial("EmployeeView", item);
+            }
+        }
+
+    </table>
+</div>
+    </form>
+</div>
+<script>
+    $(".activenavlink").removeClass("activenavlink");
+    $("#EmployeeMenu").addClass("activenavlink");
+</script>
+

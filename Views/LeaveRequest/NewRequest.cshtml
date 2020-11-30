@@ -43,7 +43,10 @@
 
 
 <script>
-    $("a[href='/LeaveRequest/']").attr("id", "active");
+    
+        $(".activenavlink").removeClass("activenavlink");
+        $("#LeaveRequestMenu").addClass("activenavlink");
+
     $(document).on("submit", ".needs-validation", validate);
     $(".needs-validation input").blur(validate);
     function validate(event) {

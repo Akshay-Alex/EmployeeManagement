@@ -67,6 +67,7 @@ namespace EmployeeManagement.Controllers
                 Session["CurrentUserRole"] = rvm.Role;
                 Session["CurrentImageUrl"] = rvm.ImageUrl;
                 Session["IsSpecialPermission"] = rvm.IsSpecialPermission;
+                Session["CurrentUserMobile"] = rvm.Mobile;
                 return RedirectToAction("Index", "Home");
 
 
@@ -101,6 +102,7 @@ namespace EmployeeManagement.Controllers
                     Session["CurrentUserRole"] = uvm.Role;
                     Session["CurrentImageUrl"] = uvm.ImageUrl;
                     Session["IsSpecialPermission"] = uvm.IsSpecialPermission;
+                    Session["CurrentUserMobile"] = uvm.Mobile;
                 }
                 /*if (uvm.Role)
                 {
@@ -127,11 +129,13 @@ namespace EmployeeManagement.Controllers
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
+        [Authorize(Roles = "HR")]
         public ActionResult FindEmployee()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "HR")]
         public ActionResult FindEmployee(int UserID)
         {
             UserViewModel u = us.GetUserByUserID(UserID);
@@ -143,13 +147,64 @@ namespace EmployeeManagement.Controllers
             ModelState.AddModelError("EmpID", "There is no Employee with the specified Employee ID");
             return View();
         }
+        [Authorize(Roles = "Employee")]
+        public ActionResult UpdateEmployeeProfile()
+        {
+
+            UserViewModel u = us.GetUserByUserID(Convert.ToInt32(Session["CurrentUserID"]));
+            return View(u);
+        }
+        [Authorize(Roles = "Employee")]
+        [HttpPost]
+        public ActionResult UpdateEmployeeProfile(UserViewModel ev)
+        {
+            if (Request.Files.Count >= 1)
+            {
+                var file = Request.Files[0];
+                var imgBytes = new Byte[0];
+
+                try
+
+                {
+
+                    imgBytes = new Byte[file.ContentLength];
+
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength);
+
+                }
+
+                catch (Exception)
+
+                {
+
+                    imgBytes = new Byte[file.ContentLength - 1];
+
+                    file.InputStream.Read(imgBytes, 0, file.ContentLength);
+
+                }
+                var base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);
+                ev.ImageUrl = base64String;
+            }
+            Session["CurrentUserName"] = ev.Name;
+            Session["CurrentImageUrl"] = ev.ImageUrl;
+            Session["CurrentUserMobile"] = ev.Mobile;
+
+            ev.UserID = Convert.ToInt32(Session["CurrentUserID"]);
+                us.UpdateUserDetails(ev);
+                return RedirectToAction("Index", "Home");
+            
+        }
+
+            [Authorize(Roles = "HR")]
         public ActionResult UpdateEmployee()
         {
 
             UserViewModel u = us.GetUserByUserID(Convert.ToInt32(Session["UserID"]));
             return View(u);
         }
+        
         [HttpPost]
+        [Authorize(Roles = "HR")]
         public ActionResult UpdateEmployee(UserViewModel ev, string submit)
         {
             if (submit == "Update")
@@ -169,16 +224,35 @@ namespace EmployeeManagement.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        [Authorize(Roles = "HR")]
         public ActionResult SearchEmployee()
         {
             List<UserViewModel> evm = new List<UserViewModel>();
             return View(evm);
         }
         [HttpPost]
+        [Authorize(Roles = "HR")]
         public ActionResult SearchEmployee(UserViewModel evm)
         {
             List<UserViewModel> e = us.GetUsersByRole(evm.Role);
             return View(e);
+        }
+        [Authorize(Roles = "HR")]
+        public ActionResult SearchEmployeeByName()
+        {
+            DataViewModel dvm = new DataViewModel();
+            dvm.namelist = us.GetAllNames();
+            dvm.Userlist = new List<UserViewModel>();
+            return View(dvm);
+        }
+        [HttpPost]
+        [Authorize(Roles = "HR")]
+        public ActionResult SearchEmployeeByName(DataViewModel dvm, string name)
+        {
+            
+            dvm.Userlist = us.GetUsersByName(name);
+            dvm.namelist = us.GetAllNames();
+            return View(dvm);
         }
     }
 }

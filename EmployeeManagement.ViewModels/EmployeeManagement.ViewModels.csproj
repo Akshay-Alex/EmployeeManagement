@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddEmployeeViewModel.cs" />
+    <Compile Include="DataViewModel.cs" />
     <Compile Include="EditEmployeeViewModel.cs" />
     <Compile Include="EmployeeViewModel.cs" />
     <Compile Include="LeaveViewModel.cs" />

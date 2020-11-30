@@ -1,4 +1,4 @@
-﻿@model EmployeeManagement.ViewModels.EmployeeViewModel
+﻿@model EmployeeManagement.ViewModels.UserViewModel
 @{
     ViewBag.Title = "UpdateEmployee";
 }
@@ -7,17 +7,22 @@
 <div class="row p-3">
     <div class="col-sm-12">
         <h1>Please enter Employee details</h1>
-        <form novalidate="novalidate" action="/Employee/UpdateEmployee" method="post" class="needs-validation" enctype="multipart/form-data">
+        <form novalidate="novalidate" action="/Account/UpdateEmployeeProfile" method="post" class="needs-validation" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     Photo :
                     <img src="data:image;base64,@Model.ImageUrl" width="100px" />
                 </div>
             </div>
+            <div class="form-group col-sm-6">
+                Upload Photo
+                <input type="file" class="form-control-file" name="ImageUrl" id="ImageUrl" />
+
+            </div>
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     Name :
-                    <input type="text" class="form-control" name="EmployeeName" value="@Model.EmployeeName" required="required" pattern="^[a-zA-Z ]*$" />
+                    <input type="text" class="form-control" name="Name" value="@Model.Name" required="required" pattern="^[a-zA-Z ]*$" />
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -41,7 +46,7 @@
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     Phone number :
-                    <input type="text" class="form-control" name="PhoneNumber" value="@Model.PhoneNumber" required="required" pattern="^[789]\d{9}$" />
+                    <input type="text" class="form-control" name="Mobile" value="@Model.Mobile" required="required" pattern="^[789]\d{9}$" />
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -49,10 +54,11 @@
                         Invalid mobile Number.
                     </div>
                 </div>
-                @Html.HiddenFor(Model => Model.EmployeeID)
+                @Html.HiddenFor(Model => Model.UserID)
+                
             </div>
-            <button type="submit" class="btn btn-primary" name ="submit" value="Update">Update Employee</button>
-            <button type="submit" class="btn btn-danger" name ="submit" value="Delete">Delete Employee</button>
+            <button type="submit" class="btn btn-primary" name="submit" value="Update">Update Profile</button>
+
         </form>
     </div>
 </div>
@@ -61,6 +67,8 @@
 
 
 <script>
+    $(".activenavlink").removeClass("activenavlink");
+    $("#ProfileMenu").addClass("activenavlink");
             $(document).on("submit", ".needs-validation", validate);
             $(".needs-validation input").blur(validate);
             function validate(event) {

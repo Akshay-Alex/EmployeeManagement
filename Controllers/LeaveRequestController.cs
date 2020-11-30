@@ -8,6 +8,7 @@ using EmployeeManagement.ServiceLayer;
 
 namespace EmployeeManagement.Controllers
 {
+    [Authorize(Roles = "Employee")]
     public class LeaveRequestController : Controller
     {
         // GET: LeaveRequest

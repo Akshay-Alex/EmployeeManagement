@@ -21,6 +21,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarmenu">
                 <ul class="navbar-nav mr-auto">
+                    <li class="dropdown-item" id="HomeMenu" href="/Home/Index">Home</li>
                     @if (Convert.ToString(Session["CurrentUserRole"]) == "HR")
                     {
                         <li class="nav-item dropdown">
@@ -28,7 +29,8 @@
                             <div class="dropdown-menu" aria-labelledby="EmployeeMenu">
                                 <a class="dropdown-item" href="/Account/Register">Add Employee</a>
                                 <a class="dropdown-item" href="/Account/FindEmployee">Update Employee</a>
-                                <a class="dropdown-item" href="/Account/SearchEmployee">Search Employee</a>
+                                <a class="dropdown-item" href="/Account/SearchEmployee">Search Employee by role</a>
+                                <a class="dropdown-item" href="/Account/SearchEmployeeByName">Search Employee by name</a>
                             </div>
                         </li>
                     }
@@ -44,11 +46,19 @@
                     }
                     @if (Convert.ToString(Session["CurrentUserRole"]) == "Employee")
                     {
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="LeaveRequestMenu" data-toggle="dropdown">Leave Requests</a>
                             <div class="dropdown-menu" aria-labelledby="LeaveRequestsMenu">
                                 <a class="dropdown-item" href="/LeaveRequest/NewRequest">New Request</a>
                                 <a class="dropdown-item" href="/LeaveRequest/LeaveStatus">Leave Status</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="ProfileMenu" data-toggle="dropdown">Profile</a>
+                            <div class="dropdown-menu" aria-labelledby="ProfileMenu">
+                                <a class="dropdown-item" href="/Account/UpdateEmployeeProfile">Update Profile</a>
+
                             </div>
                         </li>
                     }

@@ -17,7 +17,9 @@ namespace EmployeeManagement.Repositories
         void UpdateUserDetails(User u);
         void DeleteUserDetails(User u);
         string[] GetAllRoles();
+        string[] GetAllNames();
         List<User> GetUsersByRole(string role);
+        List<User> GetUsersByName(string name);
 
 
 
@@ -60,6 +62,10 @@ namespace EmployeeManagement.Repositories
                 es.Name = u.Name;
                 es.Email = u.Email;
                 es.Mobile = u.Mobile;
+                if(u.ImageUrl != null)
+                {
+                    es.ImageUrl = u.ImageUrl;
+                }
                 db.SaveChanges();
             }
         }
@@ -77,9 +83,19 @@ namespace EmployeeManagement.Repositories
             string[] roles = db.Employees.Select(temp => temp.Role).Distinct().ToArray();
             return roles;
         }
+        public string[] GetAllNames()
+        {
+            string[] names = db.Users.Select(temp => temp.Name).Distinct().ToArray();
+            return names;
+        }
         public List<User> GetUsersByRole(string role)
         {
             List<User> e = db.Users.Where(temp => temp.Role.Contains(role)).ToList();
+            return e;
+        }
+        public List<User> GetUsersByName(string name)
+        {
+            List<User> e = db.Users.Where(temp => temp.Name.Contains(name)).ToList();
             return e;
         }
     }

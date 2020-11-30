@@ -271,7 +271,6 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveController.cs" />
     <Compile Include="Controllers\LeaveRequestController.cs" />
@@ -290,19 +289,19 @@
     <Content Include="Scripts\jquery-3.5.1.min.map" />
     <Content Include="Views\Employee\AddEmployee.cshtml" />
     <Content Include="Views\Employee\FindEmployee.cshtml" />
-    <Content Include="Views\Employee\UpdateEmployee.cshtml" />
     <Content Include="Views\Shared\UploadImageView.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Leave\GetLeaveRequests.cshtml" />
     <Content Include="Views\Shared\LeaveRequests.cshtml" />
     <Content Include="Views\Shared\EmployeeView.cshtml" />
-    <Content Include="Views\Employee\SearchEmployee.cshtml" />
+    <Content Include="Views\Account\SearchEmployee.cshtml" />
     <Content Include="Views\LeaveRequest\NewRequest.cshtml" />
     <Content Include="Views\Account\FindEmployee.cshtml" />
     <Content Include="Views\Account\UpdateEmployee.cshtml" />
-    <Content Include="Views\Account\SearchEmployee.cshtml" />
     <Content Include="Views\LeaveRequest\LeaveStatus.cshtml" />
+    <Content Include="Views\Account\SearchEmployeeByName.cshtml" />
+    <Content Include="Views\Account\UpdateEmployeeProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
